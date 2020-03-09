@@ -20,9 +20,6 @@ _SERVER: HTTPServer = None
 
 
 class SimpleNotificationHandler(BaseHTTPRequestHandler):
-    def __init__(self, request, client_address, server):
-        super().__init__(request, client_address, server)
-
     def do_GET(self):
         self.send_response(200)
         self.send_header("Content-type", "text/html")

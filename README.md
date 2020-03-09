@@ -34,3 +34,17 @@ Make post request to `HOST:PORT/job-result/`
 https://plugins.jenkins.io/notification/
 
 ### Teamcity TODO
+
+
+# Links
+[![Release](https://img.shields.io/github/release/zifter/universal-ci-noti.svg)][releases-url]
+[![Supported versions](https://img.shields.io/pypi/pyversions/universal-ci-noti.svg)][pypi-url]
+[![Code Coverage](https://codecov.io/gh/zifter/universal-ci-noti/branch/master/graph/badge.svg)][codecov-url]
+[![Build Status Travis CI](https://travis-ci.org/zifter/universal-ci-noti.svg?branch=master)][travis-url]
+[![Contact](https://img.shields.io/badge/telegram-write%20me-blue.svg)][telegram-url]
+
+[releases-url]: https://github.com/zifter/universal-ci-noti/releases
+[codecov-url]: https://codecov.io/gh/zifter/universal-ci-noti
+[travis-url]: https://travis-ci.org/zifter/universal-ci-noti
+[telegram-url]: https://t.me/zifter
+[pypi-url]: https://pypi.org/project/universal-ci-noti/
