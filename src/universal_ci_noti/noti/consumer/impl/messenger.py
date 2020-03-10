@@ -18,11 +18,9 @@ class MessengerConsumer(NotificationConsumer):
 
         formatter = self.messenger.formatter()
 
-        repo_text = await formatter.as_url(
-            job_result.scm.repo_name, job_result.scm.repo_url
-        )
-        job_page = await formatter.as_url("Build page", job_result.job_url)
-        user_mention = await formatter.user_id(job_result.scm.last_committer)
+        repo_text = await formatter.as_url(job_result.scm.name, job_result.scm.url)
+        job_page = await formatter.as_url("Build page", job_result.url)
+        user_mention = await formatter.user_id(job_result.scm.committer)
 
         msg = (
             f"🖥 Building {repo_text}: {job_result.status}\n"
@@ -31,4 +29,4 @@ class MessengerConsumer(NotificationConsumer):
             f"{job_page}"
         )
 
-        await self.messenger.send_msg_to_user(job_result.scm.last_committer, msg)
+        await self.messenger.send_msg_to_user(job_result.scm.committer, msg)

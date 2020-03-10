@@ -1,7 +1,9 @@
+import logging
 import signal
 
-from universal_ci_noti.noti.runtime import logger
 from universal_ci_noti.noti.runtime.runtime import NotificationRuntime
+
+logger = logging.getLogger("universal_ci_noti.noti.runtime")
 
 
 class NotificationRuntimeExiter:

@@ -1,3 +1,1 @@
-slackclient==2.5.0
-cached-property==1.5.1
-aioify==0.3.2
+.

@@ -4,7 +4,7 @@ from universal_ci_noti.noti.queue import NotificationQueue
 
 
 class NotificationProducer:
-    def __init__(self, queue):
+    def __init__(self, queue: NotificationQueue):
         self.queue: NotificationQueue = queue
 
     @abc.abstractmethod

@@ -1,9 +1,11 @@
+import logging
 from typing import List
 
 from universal_ci_noti.noti.consumer import NotificationConsumer
 from universal_ci_noti.noti.producer import NotificationProducer
 from universal_ci_noti.noti.queue import NotificationQueue
-from universal_ci_noti.noti.runtime import logger
+
+logger = logging.getLogger("universal_ci_noti.noti.runtime")
 
 
 class NotificationRuntime:
