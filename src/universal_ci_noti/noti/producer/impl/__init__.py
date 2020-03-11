@@ -1,3 +1,4 @@
+from .jenkins import JenkinsProducer
 from .web import WebProducer
 
-__all__ = ["WebProducer"]
+__all__ = ["WebProducer", "JenkinsProducer"]

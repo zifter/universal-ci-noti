@@ -18,15 +18,17 @@ class MessengerConsumer(NotificationConsumer):
 
         formatter = self.messenger.formatter()
 
-        repo_text = await formatter.as_url(job_result.scm.name, job_result.scm.url)
+        repo_text = await formatter.as_url(
+            job_result.build.scm.name, job_result.build.scm.url
+        )
         job_page = await formatter.as_url("Build page", job_result.url)
-        user_mention = await formatter.user_id(job_result.scm.committer)
+        user_mention = await formatter.user_id(job_result.build.scm.committer)
 
         msg = (
-            f"🖥 Building {repo_text}: {job_result.status}\n"
-            f"Branch: {job_result.scm.branch}\n"  # TODO Branch url also
+            f"🖥 Building {repo_text}: {job_result.build.status}\n"
+            f"Branch: {job_result.build.scm.branch}\n"  # TODO Branch url also
             f"Committer: {user_mention}\n"
             f"{job_page}"
         )
 
-        await self.messenger.send_msg_to_user(job_result.scm.committer, msg)
+        await self.messenger.send_msg_to_user(job_result.build.scm.committer, msg)

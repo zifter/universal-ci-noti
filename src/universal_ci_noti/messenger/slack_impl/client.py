@@ -1,6 +1,7 @@
 import logging
 
 from slack import WebClient
+
 from universal_ci_noti.messenger import MessageFormatter, Messanger
 from universal_ci_noti.messenger.slack_impl.formatter import SlackMessageFormatter
 from universal_ci_noti.messenger.slack_impl.helper import SlackHelper

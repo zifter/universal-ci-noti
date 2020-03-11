@@ -4,22 +4,30 @@ from typing import Optional
 from dataclasses_json import DataClassJsonMixin
 
 
-class JobStatus:
-    UNDEFINED = "undefined"
-    SUCCESS = "success"
-    FAILED = "failed"
+class BuildStatus:
+    UNDEFINED = "UNDEFINED"
+    SUCCESS = "SUCCESS"
+    FAILED = "FAILED"
 
 
 @dataclass
 class SCMInfo(DataClassJsonMixin):
-    name: str
-    url: str
-    branch: str
-    committer: str
+    url: str = ""
+    branch: str = ""
+    commit: str = ""
+
+    name: Optional[str] = None
+    committer: Optional[str] = None
+
+
+@dataclass
+class Build(DataClassJsonMixin):
+    status: BuildStatus = BuildStatus.UNDEFINED
+    number: str = ""
+    scm: Optional[SCMInfo] = None
 
 
 @dataclass
 class JobResult(DataClassJsonMixin):
-    status: JobStatus = JobStatus.UNDEFINED
-    scm: Optional[SCMInfo] = None
-    url: Optional[str] = None
+    url: str = ""
+    build: Optional[Build] = None

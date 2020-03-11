@@ -3,10 +3,12 @@ from threading import Thread
 from typing import Optional
 
 from aiohttp import web
+
 from universal_ci_noti.utils import is_main_thread
+from universal_ci_noti.web_server import WebAPI
 
 
-class aiohttpWebAPI:
+class aiohttpWebAPI(WebAPI):
     def __init__(self, port: int = 8080):
         self._port = port
         self._app = web.Application()
