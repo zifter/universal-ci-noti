@@ -12,5 +12,9 @@ class ProxyConsumer(NotificationConsumer):
 
         self._consumer: NotificationConsumer = initial_consumer
 
+    @property
+    def consumer(self):
+        return self._consumer
+
     async def on_job_finished(self, job_result: JobResult):
-        await self._consumer.on_job_finished(job_result)
+        await self.consumer.on_job_finished(job_result)
