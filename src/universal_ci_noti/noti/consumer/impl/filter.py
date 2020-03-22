@@ -13,7 +13,7 @@ class EventFilter:
         self._name = name
 
     def __repr__(self):
-        return f'Filter[{self._name}]'
+        return f"Filter[{self._name}]"
 
     async def filter(self) -> bool:
         """
@@ -33,13 +33,15 @@ class EventFilter:
 
 
 class FilterConsumer(ProxyConsumer):
-    def __init__(self, initial_consumer: NotificationConsumer, filters: List[EventFilter]):
+    def __init__(
+        self, initial_consumer: NotificationConsumer, filters: List[EventFilter]
+    ):
         super().__init__(initial_consumer)
 
         self._filters: List[EventFilter] = filters
 
     def __repr__(self):
-        return f'FilterConsumer{self._filters}'
+        return f"FilterConsumer{self._filters}"
 
     async def on_job_finished(self, job_result: JobResult):
         if any([await f.filter() for f in self._filters]):

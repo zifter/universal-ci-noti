@@ -14,7 +14,7 @@ class WorkingHoursProviderDefault(WorkingHoursProvider):
             return 9 <= dt.time().hour <= 20
 
     async def is_weekend(self, dt: datetime.date) -> bool:
-        return dt.weekday() >= 5 # saturday and sunday, by default we are not in Israel
+        return dt.weekday() >= 5  # saturday and sunday, by default we are not in Israel
 
     async def is_holiday(self, dt: datetime.date) -> bool:
         return (dt.month, dt.day) in {

@@ -39,11 +39,11 @@ class WorkingHoursFilter(EventFilter):
     async def filter(self) -> bool:
         t = self.now()
         if await self._provider.is_holiday(t):
-            logger.debug('Skip because today is holiday')
+            logger.debug("Skip because today is holiday")
             return True
 
         if await self._provider.is_weekend(t):
-            logger.debug('Skip because today is weekend')
+            logger.debug("Skip because today is weekend")
             return True
 
         if not await self._provider.is_working_hours(t):
