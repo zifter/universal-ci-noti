@@ -1,8 +1,6 @@
 import datetime
 
-from universal_ci_noti.noti.consumer.impl.working_hours_filter import (
-    WorkingHoursProvider,
-)
+from .filter import WorkingHoursProvider
 
 
 class WorkingHoursProviderDefault(WorkingHoursProvider):
@@ -10,8 +8,9 @@ class WorkingHoursProviderDefault(WorkingHoursProvider):
         if dt.date().weekday() == 5:
             # at friday working day is a bit smaller =)
             return 9 <= dt.time().hour <= 19
-        else:
-            return 9 <= dt.time().hour <= 20
+
+        # default working hours
+        return 9 <= dt.time().hour <= 20
 
     async def is_weekend(self, dt: datetime.date) -> bool:
         return dt.weekday() >= 5  # saturday and sunday, by default we are not in Israel

@@ -1,2 +1,4 @@
+#!/bin/sh
 tox -e isort
 tox -e black
+tox

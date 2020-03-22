@@ -13,7 +13,7 @@ pytestmark = [pytest.mark.asyncio]
 
 
 @pytest.mark.parametrize(
-    "name,dt,result",
+    "_,dt,result",
     [
         (
             "1 jan, hangover",
@@ -60,7 +60,7 @@ pytestmark = [pytest.mark.asyncio]
 @patch(
     "universal_ci_noti.noti.consumer.impl.working_hours_filter.filter.WorkingHoursFilter.now"
 )
-async def test_working_filter_with_default_prodiver(mock, name, dt, result):
+async def test_working_filter_with_default_prodiver(mock, _, dt, result):
     mock.return_value = dt
     flr = WorkingHoursFilter(WorkingHoursProviderDefault())
     assert await flr.filter() is result

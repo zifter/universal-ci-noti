@@ -23,7 +23,7 @@ class EventFilter:
         """
         return False
 
-    async def filter_job_finished(self, job_result: JobResult) -> bool:
+    async def filter_job_finished(self, _: JobResult) -> bool:
         """
         Check if job result should be filtered out
 
