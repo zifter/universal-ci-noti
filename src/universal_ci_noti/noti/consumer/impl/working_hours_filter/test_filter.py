@@ -2,9 +2,12 @@ import datetime
 from unittest.mock import patch
 
 import pytest
-
-from universal_ci_noti.noti.consumer.impl.working_hours_filter.filter import WorkingHoursFilter
-from universal_ci_noti.noti.consumer.impl.working_hours_filter.default_provider import WorkingHoursProviderDefault
+from universal_ci_noti.noti.consumer.impl.working_hours_filter.default_provider import (
+    WorkingHoursProviderDefault,
+)
+from universal_ci_noti.noti.consumer.impl.working_hours_filter.filter import (
+    WorkingHoursFilter,
+)
 
 pytestmark = [pytest.mark.asyncio]
 
@@ -24,4 +27,3 @@ async def test_working_filter_with_default_prodiver(mock, name, dt, result):
     mock.return_value = dt
     flr = WorkingHoursFilter(WorkingHoursProviderDefault())
     assert await flr.filter() is result
-

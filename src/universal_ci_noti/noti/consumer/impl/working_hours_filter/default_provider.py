@@ -1,6 +1,8 @@
 import datetime
 
-from universal_ci_noti.noti.consumer.impl.working_hours_filter import WorkingHoursProvider
+from universal_ci_noti.noti.consumer.impl.working_hours_filter import (
+    WorkingHoursProvider,
+)
 
 
 class WorkingHoursProviderDefault(WorkingHoursProvider):
