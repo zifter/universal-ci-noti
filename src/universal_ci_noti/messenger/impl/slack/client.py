@@ -3,11 +3,12 @@ import logging
 from slack import WebClient
 
 from universal_ci_noti.messenger import MessageFormatter, Messanger
-from universal_ci_noti.messenger.slack_impl.formatter import SlackMessageFormatter
-from universal_ci_noti.messenger.slack_impl.helper import SlackHelper
+
+from .formatter import SlackMessageFormatter
+from .helper import SlackHelper
 
 
-class SlackMessengerImpl(Messanger):
+class SlackMessenger(Messanger):
     def __init__(self, token):
         super().__init__()
         self._client = WebClient(token=token, run_async=True)

@@ -1,5 +1,6 @@
 from universal_ci_noti.messenger import MessageFormatter
-from universal_ci_noti.messenger.slack_impl.helper import SlackHelper
+
+from .helper import SlackHelper
 
 
 class SlackMessageFormatter(MessageFormatter):

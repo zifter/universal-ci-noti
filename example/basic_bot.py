@@ -3,8 +3,10 @@ import logging
 import os
 import sys
 
-from universal_ci_noti.messenger.slack_impl.client import SlackMessengerImpl
-from universal_ci_noti.noti.consumer.impl.working_hours_filter import WorkingHoursFilter, WorkingHoursProviderDefault
+from universal_ci_noti.messenger.impl import SlackMessenger
+from universal_ci_noti.messenger.impl import TelegramMessenger
+from universal_ci_noti.noti.consumer.impl.working_hours_filter import WorkingHoursFilter
+from universal_ci_noti.noti.consumer.impl.working_hours_filter import WorkingHoursProviderDefault
 from universal_ci_noti.noti.queue.impl import SimpleQueueImpl
 from universal_ci_noti.noti.consumer.impl import FilterConsumer
 from universal_ci_noti.noti.consumer.impl import PersonalMessageConsumer
@@ -12,12 +14,16 @@ from universal_ci_noti.noti.consumer.impl import ChannelMessageConsumer
 from universal_ci_noti.noti.consumer.impl import LogConsumer
 from universal_ci_noti.noti.consumer.impl import ContainerConsumer
 from universal_ci_noti.noti.producer.impl import WebProducer
-from universal_ci_noti.noti.runtime import NotificationRuntime, NotificationRuntimeExiter
+from universal_ci_noti.noti.runtime import NotificationRuntime
+from universal_ci_noti.noti.runtime import NotificationRuntimeExiter
 from universal_ci_noti.web_server.impl import aiohttpWebAPI
 
 
 SLACK_API_TOKEN = os.environ.get('SLACK_API_TOKEN')
-SLACK_TEST_GROUP = os.environ.get('SLACK_TEST_GROUP')
+SLACK_TEST_CHANNEL = os.environ.get('SLACK_TEST_CHANNEL')
+
+TELEGRAM_API_TOKEN = os.environ.get('TELEGRAM_API_TOKEN')
+TELEGRAM_TEST_GROUP = os.environ.get('TELEGRAM_TEST_GROUP')
 
 
 def setup_logger():
@@ -30,10 +36,13 @@ def setup_logger():
     handler.setFormatter(formatter)
     root.addHandler(handler)
 
+
 async def main():
     setup_logger()
 
-    messenger = SlackMessengerImpl(SLACK_API_TOKEN)
+    slack_messenger = SlackMessenger(SLACK_API_TOKEN)
+    telegram_messenger = TelegramMessenger(TELEGRAM_API_TOKEN)
+
     web_api = aiohttpWebAPI()
 
     queue = SimpleQueueImpl()
@@ -42,11 +51,13 @@ async def main():
         LogConsumer(),
         FilterConsumer(
             [
-                WorkingHoursFilter(WorkingHoursProviderDefault())
+                # WorkingHoursFilter(WorkingHoursProviderDefault())
             ],
             ContainerConsumer([
-                PersonalMessageConsumer(messenger),
-                ChannelMessageConsumer(messenger, SLACK_TEST_GROUP),
+                PersonalMessageConsumer(slack_messenger),
+                ChannelMessageConsumer(slack_messenger, SLACK_TEST_CHANNEL),
+                PersonalMessageConsumer(telegram_messenger),
+                ChannelMessageConsumer(telegram_messenger, TELEGRAM_TEST_GROUP),
             ]),
         )
     ])

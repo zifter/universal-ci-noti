@@ -5,7 +5,7 @@ from universal_ci_noti.noti.queue import NotificationQueue
 from universal_ci_noti.noti.types import JobResult
 from universal_ci_noti.web_server import WebAPI
 
-logger = logging.getLogger("universal_ci_noti.messenger.slack_impl")
+logger = logging.getLogger("universal_ci_noti.messenger.slack")
 
 
 class JenkinsProducer(NotificationProducer):
