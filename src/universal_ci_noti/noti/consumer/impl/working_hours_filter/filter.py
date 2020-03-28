@@ -4,8 +4,6 @@ import logging
 
 from universal_ci_noti.noti.consumer.impl.filter import EventFilter
 
-logger = logging.getLogger("universal_ci_noti.noti.consumer.impl.working_hours_filter")
-
 
 class WorkingHoursProvider:
     @abc.abstractmethod
@@ -38,16 +36,16 @@ class WorkingHoursFilter(EventFilter):
 
     async def filter(self) -> bool:
         t = self.now()
-        if await self._provider.is_holiday(t):
-            logger.debug("Skip because today is holiday")
+        if await self._provider.is_holiday(t.date()):
+            logging.debug("Skip because today is holiday")
             return True
 
-        if await self._provider.is_weekend(t):
-            logger.debug("Skip because today is weekend")
+        if await self._provider.is_weekend(t.date()):
+            logging.debug("Skip because today is weekend")
             return True
 
         if not await self._provider.is_working_hours(t):
-            logger.debug("Skip because now are not a working hours")
+            logging.debug("Skip because now are not a working hours")
             return True
 
         return False

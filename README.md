@@ -6,6 +6,11 @@ Used methods:
 1. https://api.slack.com/methods/chat.postMessage
 1. https://api.slack.com/methods/users.list
 
+SLACK_API_TOKEN could be found at your app site ``Installed App Settings``` 
+```Bot User OAuth Access Token```
+
+Add your bot to channel to receive messages.
+
 For detailed permissions have a look at this methods.
 ### Telegram TODO
 

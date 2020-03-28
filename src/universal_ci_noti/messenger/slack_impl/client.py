@@ -6,8 +6,6 @@ from universal_ci_noti.messenger import MessageFormatter, Messanger
 from universal_ci_noti.messenger.slack_impl.formatter import SlackMessageFormatter
 from universal_ci_noti.messenger.slack_impl.helper import SlackHelper
 
-logger = logging.getLogger("universal_ci_noti.messenger.slack_impl")
-
 
 class SlackMessengerImpl(Messanger):
     def __init__(self, token):
@@ -20,8 +18,13 @@ class SlackMessengerImpl(Messanger):
         return self._formatter
 
     async def send_msg_to_user(self, user_id: str, msg: str):
-        logger.info(f"Send by slack to {user_id} message {msg}")
+        logging.info(f"Send by slack to {user_id} message {msg}")
 
         return await self._client.chat_postMessage(
             channel=await self._helper.get_slack_user_id(user_id), text=msg,
         )
+
+    async def send_msg_to_channel(self, channel_id: str, msg: str):
+        logging.info(f"Send by slack to {channel_id} message {msg}")
+
+        return await self._client.chat_postMessage(channel=channel_id, text=msg)

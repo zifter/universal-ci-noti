@@ -2,11 +2,11 @@ import datetime
 from unittest.mock import patch
 
 import pytest
-from universal_ci_noti.noti.consumer.impl.working_hours_filter.default_provider import (
-    WorkingHoursProviderDefault,
-)
 from universal_ci_noti.noti.consumer.impl.working_hours_filter.filter import (
     WorkingHoursFilter,
+)
+from universal_ci_noti.noti.consumer.impl.working_hours_filter.provider_default import (
+    WorkingHoursProviderDefault,
 )
 
 pytestmark = [pytest.mark.asyncio]

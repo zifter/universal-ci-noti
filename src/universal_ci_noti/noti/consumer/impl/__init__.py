@@ -1,9 +1,12 @@
+from .container import ContainerConsumer
+from .filter import FilterConsumer
 from .log import LogConsumer
-from .messenger import MessengerConsumer
-from .proxy import ProxyConsumer
+from .messenger import ChannelMessageConsumer, PersonalMessageConsumer
 
 __all__ = [
-    "MessengerConsumer",
+    "PersonalMessageConsumer",
+    "ChannelMessageConsumer",
     "LogConsumer",
-    "ProxyConsumer",
+    "FilterConsumer",
+    "ContainerConsumer",
 ]

@@ -28,3 +28,13 @@ class Messanger:
         :param msg:
         :return:
         """
+
+    @abc.abstractmethod
+    async def send_msg_to_channel(self, channel_id: str, msg: str):
+        """
+        Send message to channel
+
+        :param channel_id:
+        :param msg:
+        :return:
+        """

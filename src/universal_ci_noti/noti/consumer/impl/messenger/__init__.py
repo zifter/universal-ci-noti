@@ -1,5 +1,7 @@
-from .messenger import MessengerConsumer
+from .channel_message import ChannelMessageConsumer
+from .personal_message import PersonalMessageConsumer
 
 __all__ = [
-    "MessengerConsumer",
+    "PersonalMessageConsumer",
+    "ChannelMessageConsumer",
 ]

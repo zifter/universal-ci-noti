@@ -4,17 +4,16 @@ from universal_ci_noti.messenger import Messanger
 from universal_ci_noti.noti.consumer import NotificationConsumer
 from universal_ci_noti.noti.types import JobResult
 
-logger = logging.getLogger("universal_ci_noti.noti.consumer.impl.messenger")
 
-
-class MessengerConsumer(NotificationConsumer):
-    def __init__(self, messenger):
+class ChannelMessageConsumer(NotificationConsumer):
+    def __init__(self, messenger, channel_id: str):
         super().__init__()
 
         self.messenger: Messanger = messenger
+        self.channel_id: str = channel_id
 
     async def on_job_finished(self, job_result: JobResult):
-        logger.info(f"Create message for chat")
+        logging.info(f"Create message for chat")
 
         formatter = self.messenger.formatter()
 
@@ -31,4 +30,4 @@ class MessengerConsumer(NotificationConsumer):
             f"{job_page}"
         )
 
-        await self.messenger.send_msg_to_user(job_result.build.scm.committer, msg)
+        await self.messenger.send_msg_to_channel(self.channel_id, msg)

@@ -1,11 +1,7 @@
-import logging
 from typing import List
 
 from universal_ci_noti.noti.consumer import NotificationConsumer
-from universal_ci_noti.noti.consumer.impl import ProxyConsumer
 from universal_ci_noti.noti.types import JobResult
-
-logger = logging.getLogger("universal_ci_noti.noti.consumer.impl.proxy")
 
 
 class EventFilter:
@@ -32,13 +28,13 @@ class EventFilter:
         return False
 
 
-class FilterConsumer(ProxyConsumer):
+class FilterConsumer(NotificationConsumer):
     def __init__(
-        self, initial_consumer: NotificationConsumer, filters: List[EventFilter]
+        self, filters: List[EventFilter], initial_consumer: NotificationConsumer
     ):
-        super().__init__(initial_consumer)
-
+        super().__init__()
         self._filters: List[EventFilter] = filters
+        self._consumer: NotificationConsumer = initial_consumer
 
     def __repr__(self):
         return f"FilterConsumer{self._filters}"

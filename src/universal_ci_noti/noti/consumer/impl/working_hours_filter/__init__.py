@@ -1,5 +1,5 @@
-from .default_provider import WorkingHoursProviderDefault
 from .filter import WorkingHoursFilter, WorkingHoursProvider
+from .provider_default import WorkingHoursProviderDefault
 
 __all__ = [
     "WorkingHoursProvider",

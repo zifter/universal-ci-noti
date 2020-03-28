@@ -7,8 +7,6 @@ from universal_ci_noti.noti.queue import NotificationQueue
 from universal_ci_noti.noti.types import JobResult
 from universal_ci_noti.utils import ElapsedTime
 
-logger = logging.getLogger("universal_ci_noti.messenger.slack_impl")
-
 
 class SimpleQueueImpl(NotificationQueue):
     def __init__(self):
@@ -18,7 +16,7 @@ class SimpleQueueImpl(NotificationQueue):
         self._lock = threading.Lock()
 
     async def publish_job_result(self, job_result: JobResult):
-        logger.info(f"Publish job result {job_result} ")
+        logging.info(f"Publish job result {job_result} ")
 
         with self._lock:
             self._job_result.append(job_result)
@@ -29,7 +27,7 @@ class SimpleQueueImpl(NotificationQueue):
             if self._job_result:
                 job = self._job_result.pop(0)
 
-                logger.info(f"Receive job result {job}")
+                logging.info(f"Receive job result {job}")
 
                 return job
 
